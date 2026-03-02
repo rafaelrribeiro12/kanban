@@ -13,6 +13,24 @@ Aplicação Kanban para gerenciamento de tarefas, com backend em Node.js/Express
 
 - [Docker](https://www.docker.com/) e Docker Compose
 
+## Variáveis de ambiente
+
+Crie um arquivo `.env` na pasta `backend` contendo as variáveis do PostgreSQL e a URL de conexão usada pelo Prisma. Exemplo:
+
+```env
+# Credenciais do Postgres
+DB_HOST=db
+DB_PORT=5432
+DB_USER=user
+DB_PASSWORD=pass
+DB_NAME=kanban_db
+
+# URL usada pelo Prisma (substitua user, pass, host, porta, db conforme necessário)
+DATABASE_URL=postgresql://user:pass@db:5432/kanban_db
+```
+
+- Substitua os valores pelo que for apropriado ao seu ambiente.
+
 ## Como rodar (desenvolvimento)
 
 1. Clone o repositório
