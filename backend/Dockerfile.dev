@@ -1,0 +1,17 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Dependências primeiro (cache)
+COPY package*.json ./
+COPY prisma ./prisma
+
+RUN npm install
+
+# Copia o resto do código
+COPY . .
+
+EXPOSE 3000
+
+# ts-node-dev com hot reload
+CMD ["npm", "run", "dev"]
