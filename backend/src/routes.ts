@@ -2,7 +2,6 @@ import { Router } from 'express';
 import tarefaRoutes from './modules/tarefas/tarefas.routes'
 
 const routes = Router();
-
 routes.use('/tarefas', tarefaRoutes);
 
 routes.get('/ping', (req, res) => {
