@@ -9,4 +9,3 @@ routes.patch('/:id', updateTarefa);
 routes.delete('/:id', deleteTarefa);
 
 export default routes as typeof routes;
-
