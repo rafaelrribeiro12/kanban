@@ -33,13 +33,13 @@ Crie um arquivo `.env` na pasta `backend` contendo as variáveis do PostgreSQL e
 ```env
 # Database
 DB_HOST=db
-DB_PORT=5433
+DB_PORT=5432
 DB_USER=sa
 DB_PASSWORD=123456
 DB_NAME=kanban_db
 
 # URL usada pelo Prisma (substitua user, pass, host, porta, db conforme necessário)
-DATABASE_URL=postgresql://sa:123456@db:5433/kanban_db
+DATABASE_URL=postgresql://sa:123456@db:5432/kanban_db
 ```
 
 - Substitua os valores pelo que for apropriado ao seu ambiente.
@@ -54,8 +54,7 @@ DATABASE_URL=postgresql://sa:123456@db:5433/kanban_db
 docker compose up --build
 ```
 
-A API estará disponível em `http://localhost:3000`;
-O Frontend estará disponível em `http://localhost:4200`.
+A API estará disponível em `http://localhost:3000` e o Frontend estará disponível em `http://localhost:4200`.
 
 ## Endpoints da API
 
