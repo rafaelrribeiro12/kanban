@@ -1,4 +1,7 @@
+version: "3.9"
+
 services:
+
   db:
     image: postgres:16-alpine
     container_name: kanban-db-dev
@@ -9,26 +12,48 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data_dev:/var/lib/postgresql/data_dev
+      - postgres_data_dev:/var/lib/postgresql/data
+    networks:
+      - kanban-net
 
   api:
     build:
-      context: .
+      context: ../backend
       dockerfile: Dockerfile.dev
     container_name: kanban-api-dev
     depends_on:
       - db
     env_file:
-      - .env
+      - ../backend/.env
     environment:
       DATABASE_URL: postgresql://sa:123456@db:5432/kanban_db
       PORT: 3000
     volumes:
-      - .:/app               # hot reload no código
-      - /app/node_modules   # evita sobrescrever node_modules do container
+      - ../backend:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
     command: sh -c "npx prisma migrate dev && npm run dev"
+    networks:
+      - kanban-net
+
+  front:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: kanban-front-dev
+    depends_on:
+      - api
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    networks:
+      - kanban-net
 
 volumes:
   postgres_data_dev:
+
+networks:
+  kanban-net:
